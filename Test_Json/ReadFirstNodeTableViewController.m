@@ -10,18 +10,25 @@
 
 
 #import "ReadFirstNodeTableViewController.h"
+#import "ReadSecondNodeViewController.h"
 
-@interface ReadFirstNodeTableViewController ()
-
+@interface ReadFirstNodeTableViewController () {
+    NSMutableArray *JSONfile;
+    NSMutableDictionary *application;
+    NSMutableArray *allPages;
+    NSMutableDictionary *page;
+}
 @end
 
 @implementation ReadFirstNodeTableViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -30,11 +37,30 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // Read Json file
+    NSError *error = [[NSError alloc] init];
+    // Get file
+    NSFileManager *fm;
+    fm = [NSFileManager defaultManager];
+    NSString *mydirectory = @"/Users/Karine/Projects/Test_Json/";
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [fm changeCurrentDirectoryPath:mydirectory];
+    // Get its content
+    NSData *file = [fm contentsAtPath:[NSString stringWithFormat:@"%@%@", mydirectory, @"APIapplication.json"]];
+    
+    JSONfile = (NSMutableArray *)[NSJSONSerialization JSONObjectWithData:file options:NSJSONReadingMutableLeaves error:&error];
+    // Keep only one application
+    application = JSONfile[0];
+    for (NSString *s in application.allKeys)
+    {
+        NSLog(@"%@", s);
+    }
+    // Get all pages of the application
+    allPages = [application objectForKey:@"Pages"];
+    NSLog(@"%d", allPages.count);
+    self.navigationItem.title = [application objectForKey:@"Name"];
+    
+    [self insertNewObject];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,76 +73,61 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+    // Return the number of sections. Here, always 0.
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    // Return the number of rows in the section. Dynamic -> number of items in menu
+    return allPages.count;
 }
 
-/*
+// Insert all pages in TableView
+- (void)insertNewObject
+{
+    if (!page) {
+        page = [[NSMutableDictionary alloc] init];
+    }
+    for (NSInteger nbpage=0; nbpage<((allPages.count)); ++nbpage) {
+        NSLog(@"%d", nbpage);
+        
+        NSIndexPath *indexPathTable = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPathTable] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    page = allPages[indexPath.row];
+    NSString *txt = [page objectForKey:@"Name"];
+    cell.textLabel.text = [txt description];
     
     return cell;
 }
-*/
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+ if ([[segue identifier] isEqualToString:@"segueViewDetails"]) {
+     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+     page = allPages[indexPath.row];
+     [[segue destinationViewController] setDetails:page];
+ }
 }
-*/
+
 
 @end

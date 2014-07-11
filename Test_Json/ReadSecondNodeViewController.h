@@ -10,4 +10,7 @@
 
 @interface ReadSecondNodeViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIWebView *viewDetails;
+- (void)setDetails:(NSMutableDictionary *)details;
+
 @end

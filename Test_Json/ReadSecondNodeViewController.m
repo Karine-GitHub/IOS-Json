@@ -14,6 +14,8 @@
 
 @implementation ReadSecondNodeViewController
 
+@synthesize viewDetails;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,6 +37,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setDetails:(NSMutableDictionary *)details {
+    [viewDetails loadHTMLString:[details objectForKey:@"HtmlContent"] baseURL:nil];
+    self.navigationItem.title = [details objectForKey:@"Name"];
+}
 /*
 #pragma mark - Navigation
 

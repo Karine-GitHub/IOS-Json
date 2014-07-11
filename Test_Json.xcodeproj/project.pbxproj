@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84404E9A196BDFAA0095C642 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84404E99196BDFAA0095C642 /* MobileCoreServices.framework */; };
+		84404EC5196C17E20095C642 /* iPhone_Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84404EC4196C17E20095C642 /* iPhone_Storyboard.storyboard */; };
 		8461E837196AE6E9009476F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8461E836196AE6E9009476F0 /* Foundation.framework */; };
 		8461E839196AE6E9009476F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8461E838196AE6E9009476F0 /* CoreGraphics.framework */; };
 		8461E83B196AE6E9009476F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8461E83A196AE6E9009476F0 /* UIKit.framework */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84404E99196BDFAA0095C642 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		84404EC4196C17E20095C642 /* iPhone_Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone_Storyboard.storyboard; sourceTree = "<group>"; };
 		8461E833196AE6E9009476F0 /* Test_Json.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test_Json.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461E836196AE6E9009476F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8461E838196AE6E9009476F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84404E9A196BDFAA0095C642 /* MobileCoreServices.framework in Frameworks */,
 				8461E839196AE6E9009476F0 /* CoreGraphics.framework in Frameworks */,
 				8461E83B196AE6E9009476F0 /* UIKit.framework in Frameworks */,
 				8461E837196AE6E9009476F0 /* Foundation.framework in Frameworks */,
@@ -102,6 +107,7 @@
 		8461E835196AE6E9009476F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84404E99196BDFAA0095C642 /* MobileCoreServices.framework */,
 				8461E836196AE6E9009476F0 /* Foundation.framework */,
 				8461E838196AE6E9009476F0 /* CoreGraphics.framework */,
 				8461E83A196AE6E9009476F0 /* UIKit.framework */,
@@ -121,6 +127,7 @@
 				8461E866196AE71C009476F0 /* ReadFirstNodeTableViewController.m */,
 				8461E868196AE74A009476F0 /* ReadSecondNodeViewController.h */,
 				8461E869196AE74A009476F0 /* ReadSecondNodeViewController.m */,
+				84404EC4196C17E20095C642 /* iPhone_Storyboard.storyboard */,
 			);
 			path = Test_Json;
 			sourceTree = "<group>";
@@ -231,6 +238,7 @@
 			files = (
 				8461E841196AE6E9009476F0 /* InfoPlist.strings in Resources */,
 				8461E849196AE6E9009476F0 /* Images.xcassets in Resources */,
+				84404EC5196C17E20095C642 /* iPhone_Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +459,7 @@
 				8461E861196AE6E9009476F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8461E862196AE6E9009476F0 /* Build configuration list for PBXNativeTarget "Test_JsonTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +468,7 @@
 				8461E864196AE6E9009476F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
